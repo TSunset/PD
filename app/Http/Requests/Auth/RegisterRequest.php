@@ -21,4 +21,12 @@ class RegisterRequest extends FormRequest
             'password' => ['required', 'confirmed', Password::min(8)->letters()->numbers()],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'password.required' => 'Укажите пароль.',
+            'password.confirmed' => 'Подтверждение пароля не совпадает.',
+        ];
+    }
 }

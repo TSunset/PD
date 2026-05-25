@@ -20,31 +20,35 @@
 
                 <div class="flex flex-col items-start gap-4 lg:items-end">
                     <div class="topbar-note">Автоматизация заявок и документооборота</div>
-                    <nav class="flex flex-wrap items-center gap-1">
-                        <a href="{{ route('home') }}" class="nav-link">Главная</a>
-                        <a href="{{ route('courses.index') }}" class="nav-link">Курсы</a>
+                    <div class="flex flex-col items-start gap-3 lg:items-end">
+                        <nav class="flex flex-wrap items-center gap-1 lg:justify-end">
+                            <a href="{{ route('home') }}" class="nav-link">Главная</a>
+                            <a href="{{ route('courses.index') }}" class="nav-link">Курсы</a>
 
-                        @guest
-                            <a href="{{ route('login') }}" class="nav-link">Войти</a>
-                            <a href="{{ route('register') }}" class="btn-primary">Регистрация</a>
-                        @endguest
+                            @guest
+                                <a href="{{ route('login') }}" class="nav-link">Войти</a>
+                                <a href="{{ route('register') }}" class="btn-primary">Регистрация</a>
+                            @endguest
+
+                            @auth
+                                @if (auth()->user()->isAdmin())
+                                    <a href="{{ route('admin.dashboard') }}" class="nav-link">Админ-панель</a>
+                                    <a href="{{ route('admin.orders.index') }}" class="nav-link">Заявки</a>
+                                    <a href="{{ route('admin.orders.export') }}" class="nav-link">Общий CSV</a>
+                                @else
+                                    <a href="{{ route('dashboard') }}" class="nav-link">Личный кабинет</a>
+                                    <a href="{{ route('orders.index') }}" class="nav-link">Мои заявки</a>
+                                @endif
+                            @endauth
+                        </nav>
 
                         @auth
-                            @if (auth()->user()->isAdmin())
-                                <a href="{{ route('admin.dashboard') }}" class="nav-link">Админ-панель</a>
-                                <a href="{{ route('admin.orders.index') }}" class="nav-link">Заявки</a>
-                                <a href="{{ route('admin.orders.export') }}" class="nav-link">Общий CSV</a>
-                            @else
-                                <a href="{{ route('dashboard') }}" class="nav-link">Личный кабинет</a>
-                                <a href="{{ route('orders.index') }}" class="nav-link">Мои заявки</a>
-                            @endif
-
-                            <form action="{{ route('logout') }}" method="POST">
+                            <form action="{{ route('logout') }}" method="POST" class="shrink-0">
                                 @csrf
                                 <button type="submit" class="btn-secondary">Выйти</button>
                             </form>
                         @endauth
-                    </nav>
+                    </div>
                 </div>
             </div>
         </div>

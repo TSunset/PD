@@ -27,7 +27,10 @@
             <div class="grid gap-5 md:grid-cols-2">
                 <div>
                     <label for="password" class="mb-2 block text-sm font-semibold text-brand-navy">Пароль</label>
-                    <input id="password" name="password" type="password" class="input-field" required>
+                    <input id="password" name="password" type="password" class="input-field" required aria-describedby="password_rules">
+                    <p id="password_rules" class="mt-2 text-sm leading-6 text-brand-gray">
+                        Минимум 8 символов. Пароль должен содержать хотя бы одну латинскую букву и хотя бы одну цифру.
+                    </p>
                 </div>
                 <div>
                     <label for="password_confirmation" class="mb-2 block text-sm font-semibold text-brand-navy">Подтверждение пароля</label>
