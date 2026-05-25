@@ -65,6 +65,7 @@ jobs:
             php artisan key:generate --force
           fi
           php artisan migrate --force
+          php artisan db:seed --force
           php artisan storage:link || true
           chown -R www-data:www-data storage bootstrap/cache
           chmod -R 775 storage bootstrap/cache
