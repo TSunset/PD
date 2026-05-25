@@ -7,43 +7,48 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <div class="border-b border-slate-200/80 bg-white/90 backdrop-blur">
-        <div class="page-shell flex flex-col gap-4 py-5 lg:flex-row lg:items-center lg:justify-between">
-            <a href="{{ route('home') }}" class="flex items-center gap-3 text-brand-navy">
-                <span class="brand-mark">И</span>
-                <div>
-                    <div class="font-display text-lg font-extrabold tracking-wide">ИНФИНИТУМ</div>
-                    <div class="text-xs uppercase tracking-[0.28em] text-brand-slate">Корпоративный университет</div>
+    <header class="site-header">
+        <div class="page-shell py-4">
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <a href="{{ route('home') }}" class="flex items-center gap-4">
+                    <img src="{{ asset('images/infinitum-logo.png') }}" alt="ИНФИНИТУМ" class="w-[18rem] max-w-full lg:w-[24rem]">
+                    <div class="hidden border-l border-brand-line pl-4 lg:block">
+                        <div class="topbar-note">Корпоративный университет</div>
+                        <div class="mt-1 text-sm text-brand-gray">Онлайн-обучение для специалистов финансового рынка</div>
+                    </div>
+                </a>
+
+                <div class="flex flex-col items-start gap-4 lg:items-end">
+                    <div class="topbar-note">Автоматизация заявок и документооборота</div>
+                    <nav class="flex flex-wrap items-center gap-1">
+                        <a href="{{ route('home') }}" class="nav-link">Главная</a>
+                        <a href="{{ route('courses.index') }}" class="nav-link">Курсы</a>
+
+                        @guest
+                            <a href="{{ route('login') }}" class="nav-link">Войти</a>
+                            <a href="{{ route('register') }}" class="btn-primary">Регистрация</a>
+                        @endguest
+
+                        @auth
+                            @if (auth()->user()->isAdmin())
+                                <a href="{{ route('admin.dashboard') }}" class="nav-link">Админ-панель</a>
+                                <a href="{{ route('admin.orders.index') }}" class="nav-link">Заявки</a>
+                                <a href="{{ route('admin.orders.export') }}" class="nav-link">Общий CSV</a>
+                            @else
+                                <a href="{{ route('dashboard') }}" class="nav-link">Личный кабинет</a>
+                                <a href="{{ route('orders.index') }}" class="nav-link">Мои заявки</a>
+                            @endif
+
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn-secondary">Выйти</button>
+                            </form>
+                        @endauth
+                    </nav>
                 </div>
-            </a>
-
-            <nav class="flex flex-wrap items-center gap-2 text-sm font-medium text-brand-slate">
-                <a href="{{ route('home') }}" class="rounded-full px-4 py-2 hover:bg-brand-ice hover:text-brand-navy">Главная</a>
-                <a href="{{ route('courses.index') }}" class="rounded-full px-4 py-2 hover:bg-brand-ice hover:text-brand-navy">Курсы</a>
-
-                @guest
-                    <a href="{{ route('login') }}" class="rounded-full px-4 py-2 hover:bg-brand-ice hover:text-brand-navy">Войти</a>
-                    <a href="{{ route('register') }}" class="btn-primary">Регистрация</a>
-                @endguest
-
-                @auth
-                    @if (auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="rounded-full px-4 py-2 hover:bg-brand-ice hover:text-brand-navy">Админ-панель</a>
-                        <a href="{{ route('admin.orders.index') }}" class="rounded-full px-4 py-2 hover:bg-brand-ice hover:text-brand-navy">Заявки</a>
-                        <a href="{{ route('admin.orders.export') }}" class="rounded-full px-4 py-2 hover:bg-brand-ice hover:text-brand-navy">Скачать общий CSV</a>
-                    @else
-                        <a href="{{ route('dashboard') }}" class="rounded-full px-4 py-2 hover:bg-brand-ice hover:text-brand-navy">Личный кабинет</a>
-                        <a href="{{ route('orders.index') }}" class="rounded-full px-4 py-2 hover:bg-brand-ice hover:text-brand-navy">Мои заявки</a>
-                    @endif
-
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn-secondary">Выйти</button>
-                    </form>
-                @endauth
-            </nav>
+            </div>
         </div>
-    </div>
+    </header>
 
     <main class="py-10 lg:py-14">
         <div class="page-shell">
