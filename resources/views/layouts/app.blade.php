@@ -39,15 +39,13 @@
                                     <a href="{{ route('dashboard') }}" class="nav-link">Личный кабинет</a>
                                     <a href="{{ route('orders.index') }}" class="nav-link">Мои заявки</a>
                                 @endif
+
+                                <form action="{{ route('logout') }}" method="POST" class="inline-flex">
+                                    @csrf
+                                    <button type="submit" class="nav-link nav-link-danger">Выйти</button>
+                                </form>
                             @endauth
                         </nav>
-
-                        @auth
-                            <form action="{{ route('logout') }}" method="POST" class="shrink-0">
-                                @csrf
-                                <button type="submit" class="btn-secondary">Выйти</button>
-                            </form>
-                        @endauth
                     </div>
                 </div>
             </div>

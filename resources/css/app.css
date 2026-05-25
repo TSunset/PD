@@ -295,6 +295,23 @@ a {
     background: #c61f26;
 }
 
+.nav-link-danger {
+    border-radius: 9999px;
+    border: 1px solid rgba(198, 31, 38, 0.28);
+    color: #96171c;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
+.nav-link-danger::after {
+    display: none;
+}
+
+.nav-link-danger:hover {
+    background: #f8e8e9;
+    color: #96171c;
+}
+
 .home-hero {
     overflow: hidden;
     padding: 2rem;
