@@ -91,8 +91,7 @@
                 <span class="inline-flex rounded-full border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/80">
                     Демонстрационный контур
                 </span>
-                <h2 class="mt-4 text-3xl font-bold">Готово для презентации на защите</h2>
-                <p class="mt-3 text-base leading-8">
+                <p class="mt-4 text-base leading-8">
                     Пользователь выбирает курс, оформляет заявку и получает договор. Администратор открывает карточку,
                     скачивает PDF и CSV, затем меняет статус обработки.
                 </p>
